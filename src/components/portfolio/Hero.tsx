@@ -126,9 +126,9 @@ export const Hero = () => {
               className="flex items-center gap-12 mt-16 pt-8 border-t border-border justify-center lg:justify-start"
             >
               {[
-                { value: "5+", label: "Years experience" },
-                { value: "50+", label: "Projects delivered" },
-                { value: "30+", label: "Happy clients" },
+                { value: "10+", label: "Projects Completed" },
+                { value: "3+", label: "Internships" },
+                { value: "50+", label: "Interactive Components Built" },
               ].map((stat) => (
                 <div key={stat.label}>
                   <div className="text-2xl sm:text-3xl font-semibold">{stat.value}</div>
