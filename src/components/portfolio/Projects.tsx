@@ -92,7 +92,7 @@ export const Projects = () => {
               </motion.h2>
             </div>
             <motion.a
-              href="https://github.com"
+              href="https://github.com/Ashwin-A-00"
               target="_blank"
               rel="noopener noreferrer"
               initial={{ opacity: 0 }}
@@ -114,7 +114,7 @@ export const Projects = () => {
 
           {/* View more link for mobile */}
           <motion.a
-            href="https://github.com"
+            href="https://github.com/Ashwin-A-00"
             target="_blank"
             rel="noopener noreferrer"
             initial={{ opacity: 0 }}
