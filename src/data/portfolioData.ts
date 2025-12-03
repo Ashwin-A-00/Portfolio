@@ -14,8 +14,6 @@ export const personalInfo = {
   social: {
     github: "https://github.com/Ashwin-A-00",
     linkedin: "https://www.linkedin.com/in/ashwin-a-3251b5359/",
-    twitter: "https://twitter.com",
-    dribbble: "https://dribbble.com",
   },
 };
 
