@@ -70,6 +70,23 @@ src/
 
 ## Customization
 
+### Adding Your Profile Photo
+
+To add your profile photo, simply place an image file in the `public` folder with the name `profile-photo` and any common image extension:
+
+- `public/profile-photo.jpg`
+- `public/profile-photo.png`
+- `public/profile-photo.webp`
+- `public/profile-photo.jpeg`
+- `public/profile-photo.gif`
+- `public/profile-photo.svg`
+
+**No code changes needed!** Just replace the file whenever you want to update your photo. The system will automatically detect and display it.
+
+**Recommended:** Use a square image (e.g., 500x500px or 800x800px) for best results.
+
+### Editing Portfolio Content
+
 Edit the portfolio data in `src/data/portfolioData.ts` to customize your portfolio content.
 
 ## Deployment

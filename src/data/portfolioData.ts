@@ -11,6 +11,7 @@ export const personalInfo = {
   location: "Kochi, Kerala",
   availability: "Available for freelance",
   resumeUrl: "#",
+  // Profile photo is automatically detected from public folder - just name it "profile-photo" with any extension (.jpg, .png, .webp, etc.)
   social: {
     github: "https://github.com/Ashwin-A-00",
     linkedin: "https://www.linkedin.com/in/ashwin-a-3251b5359/",

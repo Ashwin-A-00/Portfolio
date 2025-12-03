@@ -1,9 +1,43 @@
 import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { useState, useEffect } from "react";
 import { personalInfo } from "@/data/portfolioData";
 
 export const Hero = () => {
+  const [profileImageUrl, setProfileImageUrl] = useState<string | null>(null);
+  const [imageError, setImageError] = useState(false);
+
+  useEffect(() => {
+    // Try to find profile photo with different extensions
+    const baseName = "/profile-photo";
+    const extensions = [".jpg", ".jpeg", ".png", ".webp", ".gif", ".svg"];
+    
+    let currentIndex = 0;
+    const tryLoadImage = (index: number) => {
+      if (index >= extensions.length) {
+        setImageError(true);
+        return;
+      }
+      
+      const img = new Image();
+      const url = `${baseName}${extensions[index]}`;
+      
+      img.onload = () => {
+        setProfileImageUrl(url);
+        setImageError(false);
+      };
+      
+      img.onerror = () => {
+        tryLoadImage(index + 1);
+      };
+      
+      img.src = url;
+    };
+    
+    tryLoadImage(0);
+  }, []);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center">
       {/* Subtle grid pattern */}
@@ -32,11 +66,20 @@ export const Hero = () => {
               
               {/* Image container */}
               <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-border bg-muted">
-                <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-muted to-background">
-                  <svg className="w-24 h-24 sm:w-28 sm:h-28 lg:w-36 lg:h-36 text-muted-foreground/30" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                  </svg>
-                </div>
+                {profileImageUrl && !imageError ? (
+                  <img 
+                    src={profileImageUrl} 
+                    alt={personalInfo.name}
+                    className="w-full h-full object-cover"
+                    onError={() => setImageError(true)}
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-muted to-background">
+                    <svg className="w-24 h-24 sm:w-28 sm:h-28 lg:w-36 lg:h-36 text-muted-foreground/30" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                    </svg>
+                  </div>
+                )}
               </div>
               
               {/* Decorative ring */}
