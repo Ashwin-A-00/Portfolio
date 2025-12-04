@@ -1,108 +1,193 @@
-# Dynamic Portfolio Hub
+## Dynamic Portfolio Hub
 
-A modern, responsive portfolio website built with React, TypeScript, and Tailwind CSS. Showcase your projects, experience, and skills with a beautiful, customizable interface.
+A modern, high-performance developer portfolio built with **React**, **TypeScript**, and **Vite**, styled with **Tailwind CSS** and enriched with **Framer Motion** animations.  
+The layout and content are fully data-driven, making it easy to maintain and customize without touching core UI logic.
 
-## Features
+---
 
-- 🎨 Modern UI with dark/light theme support
-- 📱 Fully responsive design
-- ⚡ Fast performance with Vite
-- 🎯 TypeScript for type safety
-- 🎭 shadcn/ui components
-- 🎨 Tailwind CSS for styling
+### ✨ Key Features
 
-## Getting Started
+- **Modern Interface**
+  - Clean, minimal layout optimized for readability
+  - Clay / olive inspired **light theme** with a subtle paper texture
+  - Polished **dark theme** with smooth transitions
 
-### Prerequisites
+- **Rich Animations**
+  - Animated hero section with floating profile avatar and circular frame
+  - Section entrances powered by `framer-motion`
+  - Micro-interactions on cards, timeline items, and buttons
 
-- Node.js (v18 or higher recommended)
-- npm or yarn
+- **Data‑Driven Portfolio**
+  - Single source of truth in `src/data/portfolioData.ts`
+  - Sections: About, Skills, Projects, Experience, Education, Contact
+  - Easy to update text, links, tech stacks, and metrics
 
-### Installation
+- **Responsive by Design**
+  - Mobile‑first layout
+  - Optimized for desktops, tablets, and phones
 
-1. Clone the repository:
-```sh
-git clone <YOUR_GIT_URL>
+- **Developer Experience**
+  - TypeScript throughout
+  - Vite dev server for instant feedback
+  - Reusable UI primitives under `src/components/ui`
+
+---
+
+### 🛠 Tech Stack
+
+- **Framework & Language**
+  - React
+  - TypeScript
+
+- **Tooling**
+  - Vite
+  - ESLint
+
+- **Styling & UI**
+  - Tailwind CSS
+  - Custom CSS utilities (`paper-texture`, `noise`, `grid-pattern`, `dot-pattern`)
+  - Shadcn-style UI components
+
+- **Animations**
+  - Framer Motion
+
+---
+
+### 📁 Project Structure
+
+```text
+src/
+  components/
+    portfolio/      # Portfolio sections (Hero, About, Projects, Experience, Contact, Footer, Navbar, ThemeToggle)
+    ui/             # Reusable UI components (buttons, cards, dialogs, etc.)
+  data/
+    portfolioData.ts  # All portfolio content (profile, skills, projects, experience, education, nav)
+  hooks/
+    use-mobile.tsx
+    use-toast.ts
+  lib/
+    utils.ts
+  pages/
+    Index.tsx       # Main portfolio page
+    NotFound.tsx
+  App.css
+  index.css         # Global styles, CSS variables, custom utilities
+  main.tsx
+```
+
+---
+
+### 🚀 Getting Started
+
+#### Prerequisites
+
+- Node.js **18+**
+- npm, yarn, or bun
+
+#### Installation
+
+1. **Clone the repository**
+
+```bash
+git clone <your-repo-url>.git
 cd dynamic-portfolio-hub
 ```
 
-2. Install dependencies:
-```sh
+2. **Install dependencies**
+
+```bash
 npm install
+# or
+yarn
+# or
+bun install
 ```
 
-3. Start the development server:
-```sh
+3. **Start the development server**
+
+```bash
 npm run dev
 ```
 
-The application will be available at `http://localhost:8080`
+Open the URL printed in the terminal (typically `http://localhost:5173`).
 
-## Project Structure
+---
 
-```
-src/
-├── components/       # React components
-│   ├── portfolio/   # Portfolio-specific components
-│   └── ui/          # Reusable UI components
-├── data/            # Data files
-├── hooks/           # Custom React hooks
-├── lib/             # Utility functions
-└── pages/           # Page components
-```
+### 📦 Available Scripts
 
-## Technologies Used
+- `npm run dev` – Start the development server
+- `npm run build` – Create a production build
+- `npm run preview` – Preview the production build locally
+- `npm run lint` – Run ESLint checks
 
-- **Vite** - Build tool and dev server
-- **React** - UI library
-- **TypeScript** - Type safety
-- **Tailwind CSS** - Styling
-- **shadcn/ui** - UI component library
-- **React Router** - Routing
-- **Framer Motion** - Animations
+---
 
-## Available Scripts
+### ✏️ Customization
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
+#### 1. Portfolio Content
 
-## Customization
+Most of the content is defined in `src/data/portfolioData.ts`:
 
-### Adding Your Profile Photo
+- **`personalInfo`** – name, roles, tagline, bio, email, location, availability, social links
+- **`aboutData`** – summary, detailed description, values, education
+- **`skillsData`** – technical skills and tools/platforms
+- **`projectsData`** – title, subtitle, description, tech stack, metrics, links, featured flag
+- **`experienceData`** – roles, companies, durations, descriptions, highlights
+- **`navLinks`** – navigation items and anchors
 
-To add your profile photo, simply place an image file in the `public` folder with the name `profile-photo` and any common image extension:
+Edit these objects to instantly update your portfolio without changing layout code.
+
+#### 2. Profile Photo
+
+Place a profile image in the `public` folder named `profile-photo` with any of the supported extensions:
 
 - `public/profile-photo.jpg`
+- `public/profile-photo.jpeg`
 - `public/profile-photo.png`
 - `public/profile-photo.webp`
-- `public/profile-photo.jpeg`
 - `public/profile-photo.gif`
 - `public/profile-photo.svg`
 
-**No code changes needed!** Just replace the file whenever you want to update your photo. The system will automatically detect and display it.
+The app automatically detects the first available file; no code changes are required.  
+For best results, use a **square image** (e.g. 500×500 or 800×800).
 
-**Recommended:** Use a square image (e.g., 500x500px or 800x800px) for best results.
+#### 3. Theming
 
-### Editing Portfolio Content
+Theme tokens are defined in `src/index.css` using CSS variables:
 
-Edit the portfolio data in `src/data/portfolioData.ts` to customize your portfolio content.
+- Light mode: `:root { --background, --foreground, --card, --accent, --border, ... }`
+- Dark mode: `.dark { --background, --foreground, --card, --accent, --border, ... }`
 
-## Deployment
+Adjust these values to fine‑tune:
 
-Build the project for production:
+- Background and surface colors
+- Text and heading colors
+- Accent / highlight color
+- Card and border treatments
 
-```sh
+The components use Tailwind’s semantic classes (e.g. `bg-background`, `text-foreground`, `bg-card`, `border-border`), so theme changes propagate consistently.
+
+---
+
+### 🌐 Deployment
+
+Create a production build:
+
+```bash
 npm run build
 ```
 
-The `dist` folder will contain the production-ready files that can be deployed to any static hosting service like:
+The output in the `dist` directory can be deployed to any static hosting provider, such as:
+
 - Vercel
 - Netlify
 - GitHub Pages
-- AWS S3
+- Cloudflare Pages
+- AWS S3 + CloudFront
 
-## License
+---
 
-MIT
+### 📄 License
+
+This project is licensed under the **MIT License**.  
+You are welcome to fork, adapt, and use it as the foundation for your own portfolio. A star or attribution is always appreciated. 🙂
