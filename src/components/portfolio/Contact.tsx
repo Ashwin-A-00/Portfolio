@@ -1,33 +1,12 @@
 import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
-import { ArrowUpRight, Mail, MapPin, Send, Github, Linkedin } from "lucide-react";
+import { useRef } from "react";
+import { ArrowUpRight, Mail, MapPin, Github, Linkedin, Sparkles } from "lucide-react";
 import { personalInfo } from "@/data/portfolioData";
 import { useToast } from "@/hooks/use-toast";
 
 export const Contact = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const { toast } = useToast();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    setIsSubmitting(false);
-    toast({
-      title: "Message sent",
-      description: "Thanks for reaching out. I'll get back to you soon.",
-    });
-    setFormData({ name: "", email: "", message: "" });
-  };
 
   return (
     <section id="contact" className="py-24 lg:py-32 bg-secondary/30" ref={ref}>
@@ -106,58 +85,43 @@ export const Contact = () => {
               </motion.div>
             </div>
 
-            {/* Right column - Form */}
-            <motion.form
+            {/* Right column - Extra info instead of form */}
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.3 }}
-              onSubmit={handleSubmit}
-              className="space-y-4"
+              className="space-y-6"
             >
-              <input
-                type="text"
-                id="name"
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full px-4 py-3 rounded-md bg-background border border-border focus:border-foreground focus:ring-1 focus:ring-foreground outline-none transition-colors"
-                placeholder="Your name"
-                required
-              />
+              <div className="rounded-xl border border-border bg-background/60 p-5">
+                <div className="flex items-center gap-2 mb-3">
+                  <Sparkles className="w-4 h-4 text-accent" />
+                  <p className="text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
+                    How I can help
+                  </p>
+                </div>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li>• Building modern React / Next.js frontends</li>
+                  <li>• Designing clean UI with Tailwind & Framer Motion</li>
+                  <li>• Integrating APIs and crafting smooth UX flows</li>
+                </ul>
+              </div>
 
-              <input
-                type="email"
-                id="email"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full px-4 py-3 rounded-md bg-background border border-border focus:border-foreground focus:ring-1 focus:ring-foreground outline-none transition-colors"
-                placeholder="you@example.com"
-                required
-              />
-
-              <textarea
-                id="message"
-                value={formData.message}
-                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                className="w-full px-4 py-3 rounded-md bg-background border border-border focus:border-foreground focus:ring-1 focus:ring-foreground outline-none transition-colors min-h-[150px] resize-none"
-                placeholder="Tell me about your project..."
-                required
-              />
-
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-md bg-foreground text-background font-medium hover:bg-foreground/90 transition-colors disabled:opacity-50"
-              >
-                {isSubmitting ? (
-                  <span className="w-5 h-5 border-2 border-background/30 border-t-background rounded-full animate-spin" />
-                ) : (
-                  <>
-                    Send message
-                    <Send className="w-4 h-4" />
-                  </>
-                )}
-              </button>
-            </motion.form>
+              <div className="rounded-xl border border-dashed border-border bg-background/40 p-5">
+                <p className="text-sm text-muted-foreground mb-3">
+                  Prefer chatting directly? Reach out via{" "}
+                  <a
+                    href={`mailto:${personalInfo.email}`}
+                    className="underline underline-offset-4 hover:text-foreground"
+                  >
+                    email
+                  </a>{" "}
+                  or connect on GitHub / LinkedIn using the icons on the left.
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  I usually reply within <span className="font-medium text-foreground">24–48 hours</span>.
+                </p>
+              </div>
+            </motion.div>
           </div>
         </div>
       </div>
