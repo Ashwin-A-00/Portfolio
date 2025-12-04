@@ -61,6 +61,9 @@ export const Hero = () => {
               animate={{ y: [0, -8, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             >
+              {/* Outer animated circle around profile (black in light mode, white in dark mode) */}
+              <div className="absolute -inset-6 sm:-inset-7 lg:-inset-8 rounded-full border-2 border-black dark:border-white" />
+
               {/* Glow effect */}
               <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-transparent rounded-full blur-2xl" />
               
