@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { ArrowUpRight, Mail, MapPin, Send } from "lucide-react";
+import { ArrowUpRight, Mail, MapPin, Send, Github, Linkedin } from "lucide-react";
 import { personalInfo } from "@/data/portfolioData";
 import { useToast } from "@/hooks/use-toast";
 
@@ -96,9 +96,11 @@ export const Contact = () => {
                     href={url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors capitalize"
+                    className="flex h-10 w-10 items-center justify-center rounded-full border border-border text-muted-foreground hover:text-foreground hover:border-foreground transition-colors"
+                    aria-label={platform}
                   >
-                    {platform}
+                    {platform === "github" && <Github className="w-5 h-5" />}
+                    {platform === "linkedin" && <Linkedin className="w-5 h-5" />}
                   </a>
                 ))}
               </motion.div>

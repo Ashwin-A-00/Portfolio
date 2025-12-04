@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ArrowUp } from "lucide-react";
+import { ArrowUp, Github, Linkedin } from "lucide-react";
 import { personalInfo, navLinks } from "@/data/portfolioData";
 
 export const Footer = () => {
@@ -39,16 +39,18 @@ export const Footer = () => {
             </nav>
 
             {/* Right - Social */}
-            <div className="flex items-center gap-4">
-              {Object.entries(personalInfo.social).slice(0, 3).map(([platform, url]) => (
+            <div className="flex items-center gap-3">
+              {Object.entries(personalInfo.social).map(([platform, url]) => (
                 <a
                   key={platform}
                   href={url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors capitalize"
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted-foreground hover:text-foreground hover:border-foreground transition-colors"
+                  aria-label={platform}
                 >
-                  {platform}
+                  {platform === "github" && <Github className="w-4 h-4" />}
+                  {platform === "linkedin" && <Linkedin className="w-4 h-4" />}
                 </a>
               ))}
             </div>
