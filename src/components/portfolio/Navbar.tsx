@@ -8,6 +8,38 @@ export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const [logoImageUrl, setLogoImageUrl] = useState<string | null>(null);
+  const [logoError, setLogoError] = useState(false);
+
+  useEffect(() => {
+    // Try to find logo with different extensions
+    const baseName = "/logo";
+    const extensions = [".jpg", ".jpeg", ".png", ".webp", ".gif", ".svg"];
+    
+    let currentIndex = 0;
+    const tryLoadImage = (index: number) => {
+      if (index >= extensions.length) {
+        setLogoError(true);
+        return;
+      }
+      
+      const img = new Image();
+      const url = `${baseName}${extensions[index]}`;
+      
+      img.onload = () => {
+        setLogoImageUrl(url);
+        setLogoError(false);
+      };
+      
+      img.onerror = () => {
+        tryLoadImage(index + 1);
+      };
+      
+      img.src = url;
+    };
+    
+    tryLoadImage(0);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,9 +75,20 @@ export const Navbar = () => {
       <nav className="container mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <a href="#" className="text-lg font-semibold tracking-tight">
-            {personalInfo.firstName}
-            <span className="text-muted-foreground">{personalInfo.lastName}</span>
+          <a href="#" className="text-lg font-semibold tracking-tight flex items-center h-8">
+            {logoImageUrl && !logoError ? (
+              <img 
+                src={logoImageUrl} 
+                alt={personalInfo.name}
+                className="h-full w-auto object-contain"
+                onError={() => setLogoError(true)}
+              />
+            ) : (
+              <>
+                {personalInfo.firstName}
+                <span className="text-muted-foreground">{personalInfo.lastName}</span>
+              </>
+            )}
           </a>
 
           {/* Desktop Navigation */}
