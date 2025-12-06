@@ -38,21 +38,32 @@ export const Footer = () => {
               ))}
             </nav>
 
-            {/* Right - Social */}
+            {/* Right - Social - Prominent */}
             <div className="flex items-center gap-3">
-              {Object.entries(personalInfo.social).map(([platform, url]) => (
+              {personalInfo.social.github && (
                 <a
-                  key={platform}
-                  href={url}
+                  href={personalInfo.social.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted-foreground hover:text-foreground hover:border-foreground transition-colors"
-                  aria-label={platform}
+                  className="group flex items-center gap-2 px-4 py-2 rounded-md border border-border bg-card text-foreground hover:bg-secondary hover:border-accent/50 transition-all duration-200 hover:scale-[1.05]"
+                  aria-label="GitHub"
                 >
-                  {platform === "github" && <Github className="w-4 h-4" />}
-                  {platform === "linkedin" && <Linkedin className="w-4 h-4" />}
+                  <Github className="w-4 h-4" />
+                  <span className="text-sm font-medium hidden sm:inline">GitHub</span>
                 </a>
-              ))}
+              )}
+              {personalInfo.social.linkedin && (
+                <a
+                  href={personalInfo.social.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-2 px-4 py-2 rounded-md bg-foreground text-background hover:bg-foreground/90 transition-all duration-200 hover:scale-[1.05]"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin className="w-4 h-4" />
+                  <span className="text-sm font-medium hidden sm:inline">LinkedIn</span>
+                </a>
+              )}
             </div>
           </div>
         </div>

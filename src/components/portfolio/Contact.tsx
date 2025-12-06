@@ -62,26 +62,37 @@ export const Contact = () => {
                 </div>
               </motion.div>
 
-              {/* Social links */}
+              {/* Social links - Prominent */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.4 }}
-                className="flex gap-4 mt-8"
+                className="flex flex-col sm:flex-row gap-3 mt-8"
               >
-                {Object.entries(personalInfo.social).map(([platform, url]) => (
+                {personalInfo.social.github && (
                   <a
-                    key={platform}
-                    href={url}
+                    href={personalInfo.social.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex h-10 w-10 items-center justify-center rounded-full border border-border text-muted-foreground hover:text-foreground hover:border-foreground transition-colors"
-                    aria-label={platform}
+                    className="group flex items-center justify-center gap-2 px-6 py-3 rounded-md border-2 border-border bg-card text-foreground font-medium hover:bg-secondary hover:border-accent/50 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
                   >
-                    {platform === "github" && <Github className="w-5 h-5" />}
-                    {platform === "linkedin" && <Linkedin className="w-5 h-5" />}
+                    <Github className="w-5 h-5" />
+                    <span>View on GitHub</span>
+                    <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                   </a>
-                ))}
+                )}
+                {personalInfo.social.linkedin && (
+                  <a
+                    href={personalInfo.social.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center justify-center gap-2 px-6 py-3 rounded-md bg-foreground text-background font-medium hover:bg-foreground/90 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+                  >
+                    <Linkedin className="w-5 h-5" />
+                    <span>Connect on LinkedIn</span>
+                    <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  </a>
+                )}
               </motion.div>
             </div>
 
@@ -115,7 +126,7 @@ export const Contact = () => {
                   >
                     email
                   </a>{" "}
-                  or connect on GitHub / LinkedIn using the icons on the left.
+                  or connect with me on GitHub and LinkedIn using the buttons below.
                 </p>
                 <p className="text-xs text-muted-foreground">
                   I usually reply within <span className="font-medium text-foreground">24–48 hours</span>.

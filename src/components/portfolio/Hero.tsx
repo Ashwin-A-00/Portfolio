@@ -39,7 +39,7 @@ export const Hero = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center">
+    <section className="relative min-h-screen flex items-center justify-center pt-20 sm:pt-24 lg:pt-0">
       {/* Subtle grid pattern */}
       <div className="absolute inset-0 grid-pattern opacity-50" />
       
@@ -48,21 +48,21 @@ export const Hero = () => {
       <div className="absolute bottom-1/4 -left-1/4 w-[400px] h-[400px] bg-accent/3 rounded-full blur-3xl" />
 
       <div className="container mx-auto px-6 lg:px-8 relative z-10">
-        <div className="max-w-5xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+        <div className="max-w-5xl mx-auto flex flex-col lg:flex-row items-center gap-8 sm:gap-10 lg:gap-20">
           {/* Profile Image */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
-            className="relative flex-shrink-0 order-first lg:order-last"
+            className="relative flex-shrink-0 order-first lg:order-last mb-4 sm:mb-0"
           >
             <motion.div
-              className="relative w-48 h-48 sm:w-56 sm:h-56 lg:w-72 lg:h-72"
+              className="relative w-36 h-36 sm:w-48 sm:h-48 lg:w-72 lg:h-72"
               animate={{ y: [0, -8, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             >
               {/* Outer animated circle around profile (black in light mode, white in dark mode) */}
-              <div className="absolute -inset-6 sm:-inset-7 lg:-inset-8 rounded-full border-2 border-black dark:border-white" />
+              <div className="absolute -inset-4 sm:-inset-6 lg:-inset-8 rounded-full border-2 border-black dark:border-white" />
 
               {/* Glow effect */}
               <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-transparent rounded-full blur-2xl" />
@@ -78,7 +78,7 @@ export const Hero = () => {
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-muted to-background">
-                    <svg className="w-24 h-24 sm:w-28 sm:h-28 lg:w-36 lg:h-36 text-muted-foreground/30" viewBox="0 0 24 24" fill="currentColor">
+                    <svg className="w-16 h-16 sm:w-24 sm:h-24 lg:w-36 lg:h-36 text-muted-foreground/30" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
                     </svg>
                   </div>
@@ -87,7 +87,7 @@ export const Hero = () => {
               
               {/* Decorative ring */}
               <motion.div
-                className="absolute -inset-2 rounded-full border border-border/50"
+                className="absolute -inset-1.5 sm:-inset-2 rounded-full border border-border/50"
                 animate={{ rotate: 360 }}
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
               />
