@@ -44,8 +44,8 @@ export const Hero = () => {
       <div className="absolute inset-0 grid-pattern opacity-50" />
       
       {/* Gradient orb - subtle */}
-      <div className="absolute top-1/4 -right-1/4 w-[600px] h-[600px] bg-accent/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-1/4 -left-1/4 w-[400px] h-[400px] bg-accent/3 rounded-full blur-3xl" />
+      <div className="absolute top-1/4 -right-1/4 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] lg:w-[600px] lg:h-[600px] bg-accent/5 rounded-full blur-3xl overflow-hidden" />
+      <div className="absolute bottom-1/4 -left-1/4 w-[200px] h-[200px] sm:w-[300px] sm:h-[300px] lg:w-[400px] lg:h-[400px] bg-accent/3 rounded-full blur-3xl overflow-hidden" />
 
       <div className="container mx-auto px-6 lg:px-8 relative z-10">
         <div className="max-w-5xl mx-auto flex flex-col lg:flex-row items-center gap-8 sm:gap-10 lg:gap-20">
