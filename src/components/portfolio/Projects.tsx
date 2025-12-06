@@ -34,36 +34,38 @@ const ProjectCard = ({
         }`}
         onClick={onToggle}
       >
-        <div className="p-6 sm:p-8">
-          <div className="flex items-start justify-between mb-4">
+        <div className="p-4 sm:p-6 lg:p-8">
+          <div className="flex items-start justify-between mb-3 sm:mb-4">
             <div className="flex-1">
-              <p className="text-sm text-muted-foreground mb-1">{project.subtitle}</p>
-              <h3 className="text-xl sm:text-2xl font-semibold group-hover:text-accent transition-colors">
+              <p className="text-xs sm:text-sm text-muted-foreground mb-1">{project.subtitle}</p>
+              <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold group-hover:text-accent transition-colors">
                 {project.title}
               </h3>
             </div>
             <motion.div
               animate={{ rotate: isExpanded ? 180 : 0 }}
               transition={{ duration: 0.3 }}
-              className="ml-4 flex-shrink-0"
+              className="ml-3 sm:ml-4 flex-shrink-0"
             >
-              <ChevronDown className="w-5 h-5 text-muted-foreground" />
+              <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5 text-muted-foreground" />
             </motion.div>
           </div>
 
+          {/* Description - Hidden on mobile, visible on desktop */}
           <motion.p
             layout
-            className="text-muted-foreground mb-6 leading-relaxed"
+            className="hidden sm:block text-muted-foreground mb-4 sm:mb-6 leading-relaxed"
           >
             {project.description}
           </motion.p>
 
+          {/* Technologies - Always visible, compact on mobile */}
           <motion.div
             layout
-            className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6"
+            className="mb-3 sm:mb-4"
           >
-            <div className="flex flex-wrap gap-2">
-              {project.tech.slice(0, isExpanded ? project.tech.length : 3).map((tech) => (
+            <div className="flex flex-wrap gap-1.5 sm:gap-2">
+              {project.tech.map((tech) => (
                 <span
                   key={tech}
                   className="px-2 py-1 text-xs rounded bg-secondary text-secondary-foreground"
@@ -71,22 +73,21 @@ const ProjectCard = ({
                   {tech}
                 </span>
               ))}
-              {!isExpanded && project.tech.length > 3 && (
-                <span className="px-2 py-1 text-xs rounded bg-secondary text-muted-foreground">
-                  +{project.tech.length - 3}
-                </span>
-              )}
-            </div>
-
-            <div className="flex items-center gap-4 text-sm text-muted-foreground">
-              <span>{project.metrics}</span>
-              <span>{project.year}</span>
             </div>
           </motion.div>
 
-          {/* Project Links - Always Visible */}
+          {/* Metrics and Year - Hidden on mobile, visible on desktop */}
+          <motion.div
+            layout
+            className="hidden sm:flex items-center gap-4 text-sm text-muted-foreground mb-4 sm:mb-6"
+          >
+            <span>{project.metrics}</span>
+            <span>{project.year}</span>
+          </motion.div>
+
+          {/* Project Links - Always Visible, compact on mobile */}
           <div 
-            className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-border"
+            className="flex flex-col sm:flex-row gap-2 sm:gap-3 pt-3 sm:pt-4 border-t border-border"
             onClick={(e) => e.stopPropagation()}
           >
             {project.liveUrl && project.liveUrl !== "#" && (
@@ -94,10 +95,10 @@ const ProjectCard = ({
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group/btn flex items-center justify-center gap-2 px-6 py-3 rounded-md bg-foreground text-background font-medium hover:bg-foreground/90 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+                className="group/btn flex items-center justify-center gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-md bg-foreground text-background font-medium hover:bg-foreground/90 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] text-sm sm:text-base"
               >
                 <span>View Live Project</span>
-                <ArrowUpRight className="w-4 h-4 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+                <ArrowUpRight className="w-3 h-3 sm:w-4 sm:h-4 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
               </a>
             )}
             {project.githubUrl && project.githubUrl !== "#" && (
@@ -105,9 +106,9 @@ const ProjectCard = ({
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group/btn flex items-center justify-center gap-2 px-6 py-3 rounded-md border-2 border-border bg-card text-foreground font-medium hover:bg-secondary hover:border-accent/50 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+                className="group/btn flex items-center justify-center gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-md border-2 border-border bg-card text-foreground font-medium hover:bg-secondary hover:border-accent/50 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] text-sm sm:text-base"
               >
-                <Github className="w-4 h-4" />
+                <Github className="w-3 h-3 sm:w-4 sm:h-4" />
                 <span>View Source Code</span>
               </a>
             )}
@@ -122,28 +123,48 @@ const ProjectCard = ({
                 transition={{ duration: 0.3 }}
                 className="overflow-hidden"
               >
-                <div className="pt-4 border-t border-border mt-4">
-                  <div className="mb-4">
-                    <h4 className="text-sm font-semibold mb-3 text-foreground">All Technologies</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {project.tech.map((tech) => (
-                        <span
-                          key={tech}
-                          className="px-3 py-1.5 text-sm rounded-md bg-accent/10 text-accent border border-accent/20"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
+                <div className="pt-3 sm:pt-4 border-t border-border mt-3 sm:mt-4">
+                  {/* Description - Only visible on mobile when expanded */}
+                  <div className="sm:hidden mb-4">
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {project.description}
+                    </p>
                   </div>
-                  
-                  <div className="p-4 rounded-md bg-secondary/50 border border-border">
-                    <p className="text-sm text-muted-foreground mb-2">
+
+                  {/* Metrics and Year - Only visible on mobile when expanded */}
+                  <div className="sm:hidden mb-4 p-3 rounded-md bg-secondary/50 border border-border">
+                    <p className="text-xs text-muted-foreground mb-1">
                       <span className="font-semibold text-foreground">Metrics:</span> {project.metrics}
                     </p>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-xs text-muted-foreground">
                       <span className="font-semibold text-foreground">Year:</span> {project.year}
                     </p>
+                  </div>
+
+                  {/* Desktop expanded content */}
+                  <div className="hidden sm:block">
+                    <div className="mb-4">
+                      <h4 className="text-sm font-semibold mb-3 text-foreground">All Technologies</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {project.tech.map((tech) => (
+                          <span
+                            key={tech}
+                            className="px-3 py-1.5 text-sm rounded-md bg-accent/10 text-accent border border-accent/20"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    
+                    <div className="p-4 rounded-md bg-secondary/50 border border-border">
+                      <p className="text-sm text-muted-foreground mb-2">
+                        <span className="font-semibold text-foreground">Metrics:</span> {project.metrics}
+                      </p>
+                      <p className="text-sm text-muted-foreground">
+                        <span className="font-semibold text-foreground">Year:</span> {project.year}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </motion.div>
